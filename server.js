@@ -1,59 +1,19 @@
 var express = require('express');
 var cors = require('cors');
 var { graphqlHTTP } = require('express-graphql');
-var { buildSchema } = require('graphql');
-// var graphqlSchema = require('./schema.graphql');
-// console.log(graphqlSchema);
+var { buildSchema, buildASTSchema } = require('graphql');
+
+//https://github.com/ardatan/graphql-import-node
+require('graphql-import-node/register');
+var graphqlSchema = require('./schema.graphql');
+console.log('graphqlSchema', graphqlSchema);
 
 // Construct a schema, using GraphQL schema language
-var schema = buildSchema(`
-interface Node {
-  id: ID!
-}
-
-type Faction implements Node {
-  id: ID!
-  name: String
-  ships: ShipConnection
-}
-
-type Ship implements Node {
-  id: ID!
-  name: String
-}
-
-type ShipConnection {
-  edges: [ShipEdge]
-  pageInfo: PageInfo!
-}
-
-type ShipEdge {
-  cursor: String!
-  node: Ship
-}
-
-type PageInfo {
-  hasNextPage: Boolean!
-  hasPreviousPage: Boolean!
-  startCursor: String
-  endCursor: String
-}
-type User {
-  id: ID!
-  name: String
-}
-
-type Query {
-  rebels(id: ID!): Faction
-  empire: Faction
-  node(id: ID!): Node
-  user(id: ID!): User
-}`);
+var schema = buildASTSchema(graphqlSchema);
 
 // The root provides a resolver function for each API endpoint
 var root = {
   rebels: ({id}) => {
-    console.log(id);
     return {
       id: id,
       name: 'Han Solo',
