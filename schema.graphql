@@ -1,0 +1,42 @@
+interface Node {
+  id: ID!
+}
+
+type Faction implements Node {
+  id: ID!
+  name: String
+  ships: ShipConnection
+}
+
+type Ship implements Node {
+  id: ID!
+  name: String
+}
+
+type ShipConnection {
+  edges: [ShipEdge]
+  pageInfo: PageInfo!
+}
+
+type ShipEdge {
+  cursor: String!
+  node: Ship
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+type User {
+  id: ID!
+  name: String
+}
+
+type Query {
+  rebels(id: ID!): Faction
+  empire: Faction
+  node(id: ID!): Node
+  user(id: ID!): User
+}
