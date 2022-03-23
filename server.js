@@ -6,14 +6,13 @@ var { buildSchema, buildASTSchema } = require('graphql');
 //https://github.com/ardatan/graphql-import-node
 require('graphql-import-node/register');
 var graphqlSchema = require('./schema.graphql');
-console.log('graphqlSchema', graphqlSchema);
 
 // Construct a schema, using GraphQL schema language
 var schema = buildASTSchema(graphqlSchema);
 
 // The root provides a resolver function for each API endpoint
 var root = {
-  rebels: ({id}) => {
+  rebels: ({ id }) => {
     return {
       id: id,
       name: 'Han Solo',
@@ -40,10 +39,18 @@ var root = {
       }
     };
   },
-  user: ({id}) => ({
+  user: ({ id }) => ({
     id: id,
     name: `Luke Skywalker ${id}`,
   }),
+  addUser: ({ input }) => {
+    console.log(input);
+    return {
+      id: '10000',
+      name: input.name,
+      age: input.age,
+    };
+  }
 };
 
 var app = express();

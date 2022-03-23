@@ -32,6 +32,7 @@ type PageInfo {
 type User {
   id: ID!
   name: String
+  age: Int
 }
 
 type Query {
@@ -39,4 +40,13 @@ type Query {
   empire: Faction
   node(id: ID!): Node
   user(id: ID!): User
+}
+
+input AddUserInput {
+  name: String
+  age: Int
+}
+
+type Mutation {
+  addUser(input: AddUserInput): User
 }
