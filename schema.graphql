@@ -35,11 +35,28 @@ type User {
   age: Int
 }
 
+type Human {
+  name: String
+  age: Int
+}
+type Dog {
+  gender: String
+  age: Int
+  weight: Int
+}
+type Cat {
+  gender: String
+  name: String
+  length: Int
+}
+union SearchResult = Human | Dog | Cat
+
 type Query {
   rebels(id: ID!): Faction
   empire: Faction
   node(id: ID!): Node
   user(id: ID!): User
+  search: SearchResult
 }
 
 input AddUserInput {
