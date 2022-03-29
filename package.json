@@ -8,10 +8,11 @@
       "patterns": [
         "**/*.js"
       ],
-      "extensions": [
-        "js","ts"
-      ],
-      "quiet": false
+      "extensions": "js,ts",
+      "quiet": false,
+      "ignore": [
+        "node_modules/**"
+      ]
     }
   },
   "scripts": {
