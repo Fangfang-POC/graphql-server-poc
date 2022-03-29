@@ -59,6 +59,12 @@ const resolvers = {
                 name: `Luke Skywalker ${args.id}`,
             }
         },
+        test: (parent, args, context, info)=>{
+            return {
+                name: `Fangfang Hao ${args.id}`,
+                maxSpeed: 4444,
+            }
+        },
         search: (parent, args, context, info) => {
             return [{
                 name: 'Tom',

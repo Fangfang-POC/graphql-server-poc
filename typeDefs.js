@@ -71,11 +71,13 @@ interface Node {
     age: Int
   }
 
+  union Test = Vehicle | User
   type Query {
     rebels(id: ID!): Faction
     empire: Faction
     node(id: ID!): Node
     user(id: ID!): User
+    test(id: ID!): Test
     search: [SearchResult]
     vehicles: [Vehicle]
   }

@@ -3,8 +3,20 @@
   "version": "1.0.0",
   "description": "An express server for graphql",
   "main": "index.js",
+  "watch": {
+    "start:server": {
+      "patterns": [
+        "**/*.js"
+      ],
+      "extensions": [
+        "js","ts"
+      ],
+      "quiet": false
+    }
+  },
   "scripts": {
-    "start": "NODE_ENV=development node server.js",
+    "start": "npm-watch start:server",
+    "start:server": "NODE_ENV=development node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Fangfanghao@seismic.com",
@@ -16,6 +28,7 @@
     "graphql": "^16.3.0",
     "graphql-import-node": "^0.0.4",
     "@graphql-tools/schema": "^8.3.5",
-    "@graphql-tools/utils": "^8.6.5"
+    "@graphql-tools/utils": "^8.6.5",
+    "npm-watch": "^0.11.0"
   }
 }
