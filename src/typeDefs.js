@@ -1,4 +1,4 @@
-const typeDefs = /* GraphQL */ `
+const typeDefs = `
 interface Node {
     id: ID!
   }
@@ -75,6 +75,7 @@ interface Node {
     rebels(id: ID!): Faction
     empire: Faction
     node(id: ID!): Node
+    users: [User]
     user(id: ID!): User
     search: [SearchResult]
     vehicles: [Vehicle]
@@ -85,5 +86,5 @@ interface Node {
   }
 
 `;
-// export default typeDefs;
+
 module.exports = typeDefs;

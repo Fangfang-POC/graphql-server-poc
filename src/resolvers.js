@@ -1,3 +1,13 @@
+const users = [{
+    id: 1000,
+    name: `Luke Skywalker`,
+    age: 34,
+},{
+    id: 1001,
+    name: 'Lucy',
+    age: 23,
+}];
+
 const resolvers = {
     SearchResult: {
         __resolveType(obj, context, info) {
@@ -25,7 +35,7 @@ const resolvers = {
         }
     },
     Query: {
-        rebels: (parent, args, context, info) => {
+        rebels: (_, args, context, info) => {
             const { id } = args;
             return {
                 id: id,
@@ -53,11 +63,12 @@ const resolvers = {
                 }
             };
         },
+        users: (_, args, context, info) => {
+            return users;
+        },
         user: (parent, args, context, info) => {
-            return {
-                id: args.id,
-                name: `Luke Skywalker ${args.id}`,
-            }
+            const { id } = args;
+            return users.find(user => user.id === id);
         },
         search: (parent, args, context, info) => {
             return [{
@@ -89,9 +100,14 @@ const resolvers = {
     Mutation: {
         addUser: (parent, args, context, info) => {
             const { input } = args;
-            console.log(input);
+            const nextId = users[users.length-1].id + 1;
+            users.push({
+                id: nextId,
+                name: input.name,
+                age: input.age,
+            });
             return {
-                id: '10000',
+                id: nextId,
                 name: input.name,
                 age: input.age,
             };
@@ -99,5 +115,4 @@ const resolvers = {
     }
 };
 
-// export default resolvers;
 module.exports = resolvers;

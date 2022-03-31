@@ -4,7 +4,17 @@
   "description": "An express server for graphql",
   "main": "index.js",
   "watch": {
-    "start:server": {
+    "start:express": {
+      "patterns": [
+        "**/*.js"
+      ],
+      "extensions": "js,ts",
+      "quiet": false,
+      "ignore": [
+        "node_modules/**"
+      ]
+    },
+    "start:apollo": {
       "patterns": [
         "**/*.js"
       ],
@@ -16,13 +26,16 @@
     }
   },
   "scripts": {
-    "start": "npm-watch start:server",
-    "start:server": "NODE_ENV=development node server.js",
+    "watch:apollo": "npm-watch start:apollo",
+    "start:apollo": "node src/index.js",
+    "watch:express": "npm-watch start:express",
+    "start:express": "NODE_ENV=development node src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Fangfanghao@seismic.com",
   "license": "ISC",
   "dependencies": {
+    "apollo-server": "^3.6.7",
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "express-graphql": "^0.12.0",
