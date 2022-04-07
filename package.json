@@ -26,10 +26,10 @@
     }
   },
   "scripts": {
-    "watch:apollo": "npm-watch start:apollo",
-    "start:apollo": "node src/index.js",
-    "watch:express": "npm-watch start:express",
-    "start:express": "NODE_ENV=development node src/server.js",
+    "start:apollo": "npm-watch apollo:server",
+    "apollo:server": "node src/index.js",
+    "start:express": "npm-watch express:server",
+    "express:server": "NODE_ENV=development node src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Fangfanghao@seismic.com",
