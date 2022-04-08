@@ -2,10 +2,14 @@ const users = [{
     id: 1000,
     name: `Luke Skywalker`,
     age: 34,
+    username: 'LSK',
+    gender: 'MALE',
 },{
     id: 1001,
-    name: 'Lucy',
+    name: 'Lucy Li',
     age: 23,
+    username: 'LuL',
+    gender: 'FEMALE',
 }];
 
 const resolvers = {

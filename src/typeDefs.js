@@ -30,9 +30,15 @@ interface Node {
     startCursor: String
     endCursor: String
   }
+  enum Gender {
+    MALE
+    FEMALE
+  }
   type User {
     id: ID!
     name: String
+    username: String
+    gender: Gender
     age: Int
   }
   
@@ -84,7 +90,6 @@ interface Node {
   type Mutation {
     addUser(input: AddUserInput): User
   }
-
 `;
 
 module.exports = typeDefs;
