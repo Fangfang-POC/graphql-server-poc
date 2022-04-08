@@ -1,8 +1,11 @@
 # graphql-server-poc
 ## Local development
 - `yarn install`
-### start the 'express-graphql' server
+### Start the 'express-graphql' server
 - `yarn start:express`
-### start the 'apollo-server' server
+### Start the 'apollo-server' server
 - `yarn start:apollo`
-- the service endpoint is `http://localhost:4000/graphql`
+
+**Note**: you only need to start one of the servers. Either 'express-graphql' or 'apollo-server', not both.
+
+## The service endpoint is `http://localhost:4000/graphql`
