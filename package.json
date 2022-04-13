@@ -4,7 +4,7 @@
   "description": "An express server for graphql",
   "main": "index.js",
   "watch": {
-    "start:express": {
+    "express:server": {
       "patterns": [
         "**/*.js"
       ],
@@ -14,7 +14,7 @@
         "node_modules/**"
       ]
     },
-    "start:apollo": {
+    "apollo:server": {
       "patterns": [
         "**/*.js"
       ],
