@@ -1,10 +1,13 @@
+const { PubSub, withFilter } = require('graphql-subscriptions');
+const pubsub = new PubSub();
+
 const users = [{
     id: 1000,
     name: `Luke Skywalker`,
     age: 34,
     username: 'LSK',
     gender: 'MALE',
-},{
+}, {
     id: 1001,
     name: 'Lucy Li',
     age: 23,
@@ -71,7 +74,6 @@ const resolvers = {
             return users;
         },
         user: (parent, args, context, info) => {
-            console.log(args);
             const { id } = args;
             return users.find(user => (user.id) === parseInt(id));
         },
@@ -105,17 +107,30 @@ const resolvers = {
     Mutation: {
         addUser: (parent, args, context, info) => {
             const { input } = args;
-            const nextId = users[users.length-1].id + 1;
+            const nextId = users[users.length - 1].id + 1;
             users.push({
                 id: nextId,
                 name: input.name,
                 age: input.age,
             });
+            pubsub.publish('USER_ADDED', { userAdded: { id: nextId, name: input.name, age: input.age } });
             return {
                 id: nextId,
                 name: input.name,
                 age: input.age,
             };
+        }
+    },
+    Subscription: {
+        userAdded: {
+            subscribe: withFilter(() => {
+                return pubsub.asyncIterator('USER_ADDED');
+            },
+                (payload, variables) => {
+                    console.log(payload, variables);
+                    return true;
+                }
+            )
         }
     }
 };

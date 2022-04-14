@@ -77,6 +77,10 @@ interface Node {
     age: Int
   }
 
+  type Subscription {
+    userAdded: User
+  }
+
   type Query {
     rebels(id: ID!): Faction
     empire: Faction

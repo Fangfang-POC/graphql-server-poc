@@ -71,7 +71,7 @@
     tslib "~2.3.0"
     value-or-promise "1.0.11"
 
-"@graphql-tools/utils@8.6.5", "@graphql-tools/utils@^8.6.5":
+"@graphql-tools/utils@8.6.5":
   version "8.6.5"
   resolved "https://seismic.jfrog.io/seismic/api/npm/npm/@graphql-tools/utils/-/utils-8.6.5.tgz#ac04571b03f854c7a938b2ab700516a6c6d32335"
   integrity sha512-mjOtaWiS2WIqRz/cq5gaeM3sVrllcu2xbtHROw1su1v3xWa3D3dKgn8Lrl7+tvWs5WUVySsBss/VZ3WdoPkCrA==
@@ -364,15 +364,6 @@ apollo-server-types@^3.5.2:
     apollo-reporting-protobuf "^3.3.1"
     apollo-server-caching "^3.3.0"
     apollo-server-env "^4.2.1"
-
-apollo-server@^3.6.7:
-  version "3.6.7"
-  resolved "https://seismic.jfrog.io/seismic/api/npm/npm/apollo-server/-/apollo-server-3.6.7.tgz#6779de1dfd33afce08dff905e561f628d71ad83d"
-  integrity sha512-WERZqaVCkZJMoOc9y692NribgNtKbHDjOwiAmgXI2WBlON2oUvCwgxPvsMg+bXVpQx4itrMyj31a2N6BeKmbmQ==
-  dependencies:
-    apollo-server-core "^3.6.7"
-    apollo-server-express "^3.6.7"
-    express "^4.17.1"
 
 array-flatten@1.1.1:
   version "1.1.1"
@@ -683,7 +674,7 @@ express-graphql@^0.12.0:
     http-errors "1.8.0"
     raw-body "^2.4.1"
 
-express@^4.17.1, express@^4.17.3:
+express@^4.17.3:
   version "4.17.3"
   resolved "https://seismic.jfrog.io/seismic/api/npm/npm/express/-/express-4.17.3.tgz#f6c7302194a4fb54271b73a1fe7a06478c8f85a1"
   integrity sha512-yuSQpz5I+Ch7gFrPCk4/c+dIBKlQUxtgwqzph132bsT6qhuzss6I8cLJQz7B3rFblzd6wtcI0ZbGltH/C4LjUg==
@@ -809,10 +800,12 @@ graceful-fs@^4.1.2:
   resolved "https://seismic.jfrog.io/seismic/api/npm/npm/graceful-fs/-/graceful-fs-4.2.9.tgz#041b05df45755e587a24942279b9d113146e1c96"
   integrity sha512-NtNxqUcXgpW2iMrfqSfR73Glt39K+BLwWsPs94yR63v45T0Wbej7eRmL5cWfwEgqXnmjQp3zaJTshdRW/qC2ZQ==
 
-graphql-import-node@^0.0.4:
-  version "0.0.4"
-  resolved "https://seismic.jfrog.io/seismic/api/npm/npm/graphql-import-node/-/graphql-import-node-0.0.4.tgz#0522f058978c7e1b99d1e6be1b851ee17007b111"
-  integrity sha512-okpdABQIgIM0qdx9Mfgdu6fTsFEazZmHZdEU34cijkUj9D1db1SyPRGHPxbXmbacamhEF41ckxpCAgHiGliryQ==
+graphql-subscriptions@^2.0.0:
+  version "2.0.0"
+  resolved "https://seismic.jfrog.io/seismic/api/npm/npm/graphql-subscriptions/-/graphql-subscriptions-2.0.0.tgz#11ec181d475852d8aec879183e8e1eb94f2eb79a"
+  integrity sha512-s6k2b8mmt9gF9pEfkxsaO1lTxaySfKoEJzEfmwguBbQ//Oq23hIXCfR1hm4kdh5hnR20RdwB+s3BCb+0duHSZA==
+  dependencies:
+    iterall "^1.3.0"
 
 graphql-tag@^2.11.0:
   version "2.12.6"
@@ -820,6 +813,11 @@ graphql-tag@^2.11.0:
   integrity sha512-FdSNcu2QQcWnM2VNvSCCDCVS5PpPqpzgFT8+GXzqJuoDd0CBncxCY278u4mhRO7tMgo2JjgJA5aZ+nWSQ/Z+xg==
   dependencies:
     tslib "^2.1.0"
+
+graphql-ws@^5.7.0:
+  version "5.7.0"
+  resolved "https://seismic.jfrog.io/seismic/api/npm/npm/graphql-ws/-/graphql-ws-5.7.0.tgz#4b9d7a0ee9555804582f27f5d7695d10aafdbdc8"
+  integrity sha512-8yYuvnyqIjlJ/WfebOyu2GSOQeFauRxnfuTveY9yvrDGs2g3kR9Nv4gu40AKvRHbXlSJwTbMJ6dVxAtEyKwVRA==
 
 graphql@^16.3.0:
   version "16.3.0"
@@ -989,6 +987,11 @@ is-yarn-global@^0.3.0:
   version "0.3.0"
   resolved "https://seismic.jfrog.io/seismic/api/npm/npm/is-yarn-global/-/is-yarn-global-0.3.0.tgz#d502d3382590ea3004893746754c89139973e232"
   integrity sha512-VjSeb/lHmkoyd8ryPVIKvOCn4D1koMqY+vqyjjUfc3xyKtP4dYOxM44sZrnqQSzSds3xyOrUTLTC9LVCVgLngw==
+
+iterall@^1.3.0:
+  version "1.3.0"
+  resolved "https://seismic.jfrog.io/seismic/api/npm/npm/iterall/-/iterall-1.3.0.tgz#afcb08492e2915cbd8a0884eb93a8c94d0d72fea"
+  integrity sha512-QZ9qOMdF+QLHxy1QIpUHUU1D5pS2CG2P69LF6L6CPjPYA/XMOmKV3PZpawHoAjHNyB0swdVTRxdYT4tbBbxqwg==
 
 json-buffer@3.0.0:
   version "3.0.0"
@@ -1523,11 +1526,6 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript@^4.6.3:
-  version "4.6.3"
-  resolved "https://seismic.jfrog.io/seismic/api/npm/npm/typescript/-/typescript-4.6.3.tgz#eefeafa6afdd31d725584c67a0eaba80f6fc6c6c"
-  integrity sha512-yNIatDa5iaofVozS/uQJEl3JRWLKKGJKh6Yaiv0GLGSuhpFJe7P3SbHZ8/yjAHRQwKRoA6YZqlfjXWmVzoVSMw==
-
 undefsafe@^2.0.5:
   version "2.0.5"
   resolved "https://seismic.jfrog.io/seismic/api/npm/npm/undefsafe/-/undefsafe-2.0.5.tgz#38733b9327bdcd226db889fb723a6efd162e6e2c"
@@ -1640,6 +1638,11 @@ write-file-atomic@^3.0.0:
     is-typedarray "^1.0.0"
     signal-exit "^3.0.2"
     typedarray-to-buffer "^3.1.5"
+
+ws@^8.5.0:
+  version "8.5.0"
+  resolved "https://seismic.jfrog.io/seismic/api/npm/npm/ws/-/ws-8.5.0.tgz#bfb4be96600757fe5382de12c670dab984a1ed4f"
+  integrity sha512-BWX0SWVgLPzYwF8lTzEy1egjhS4S4OEAHfsO8o65WOVsrnSRGaSiUaa9e0ggGlkMTtBlmOpEXiie9RUcBO86qg==
 
 xdg-basedir@^4.0.0:
   version "4.0.0"

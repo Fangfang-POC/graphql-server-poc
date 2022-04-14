@@ -34,14 +34,16 @@
   "author": "Fangfanghao@seismic.com",
   "license": "ISC",
   "dependencies": {
-    "apollo-server": "^3.6.7",
+    "@graphql-tools/schema": "^8.3.5",
+    "apollo-server-express": "^3.6.7",
+    "apollo-server-core": "^3.6.7",
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "express-graphql": "^0.12.0",
     "graphql": "^16.3.0",
-    "graphql-import-node": "^0.0.4",
-    "@graphql-tools/schema": "^8.3.5",
-    "@graphql-tools/utils": "^8.6.5",
-    "npm-watch": "^0.11.0"
+    "graphql-subscriptions": "^2.0.0",
+    "graphql-ws": "^5.7.0",
+    "npm-watch": "^0.11.0",
+    "ws": "^8.5.0"
   }
 }
