@@ -1,4 +1,6 @@
 const typeDefs = `
+directive @uppercase on FIELD_DEFINITION
+
 interface Node {
     id: ID!
   }
@@ -37,8 +39,8 @@ interface Node {
   type User {
     id: ID!
     name: String
-    username: String
-    gender: Gender
+    username: String @uppercase
+    gender: Gender @deprecated(reason: "test directive")
     age: Int
   }
   
@@ -76,6 +78,10 @@ interface Node {
     name: String
     age: Int
   }
+  type UsersQueryResult {
+    totalCount: Int
+    userList: [User]
+  }
 
   type Subscription {
     userAdded: User
@@ -85,7 +91,7 @@ interface Node {
     rebels(id: ID!): Faction
     empire: Faction
     node(id: ID!): Node
-    users: [User]
+    users(offset: Int, limit: Int): UsersQueryResult
     user(id: ID!): User
     search: [SearchResult]
     vehicles: [Vehicle]

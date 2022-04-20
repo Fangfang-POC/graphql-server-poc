@@ -4,6 +4,7 @@ const { ApolloServerPluginDrainHttpServer } = require("apollo-server-core");
 const { makeExecutableSchema } = require('@graphql-tools/schema');
 const { WebSocketServer } = require('ws');
 const { useServer } = require('graphql-ws/lib/use/ws');
+const { uppercaseDirectiveTransformer } = require('./directiveTransformers');
 
 const { ApolloServer, gql } = require('apollo-server-express');
 const resolvers = require('./resolvers');
@@ -19,7 +20,7 @@ const wsServer = new WebSocketServer({ server: httpServer, path: '/subscriptions
 const serverCleanup = useServer({ schema }, wsServer);
 
 const server = new ApolloServer({
-    schema,
+    schema: uppercaseDirectiveTransformer(schema, 'uppercase'),
     introspection: true,
     graphqlPath: '/graphql',
     plugins: [
@@ -38,16 +39,16 @@ const server = new ApolloServer({
     ]
 });
 
-server.start().then(()=>{
+server.start().then(() => {
     server.applyMiddleware({ app });
 });
 
 const PORT = 4000;
 // Now that our HTTP server is fully set up, we can listen to it.
 httpServer.listen(PORT, () => {
-  console.log(
-    `Server is now running on http://localhost:${PORT}${server.graphqlPath}`,
-  );
+    console.log(
+        `Server is now running on http://localhost:${PORT}${server.graphqlPath}`,
+    );
 });
 
 

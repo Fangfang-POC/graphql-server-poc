@@ -1,0 +1,32 @@
+{
+    "users": [
+        {
+            "id": 1000,
+            "name": "Luke Skywalker",
+            "age": 34,
+            "username": "LSK",
+            "gender": "MALE"
+        },
+        {
+            "id": 1001,
+            "name": "Lucy Li",
+            "age": 23,
+            "username": "LSK",
+            "gender": "FEMALE"
+        },
+        {
+            "id": 1002,
+            "name": "Hello",
+            "age": 1,
+            "username": "Hello_1002",
+            "gender": "MALE"
+        },
+        {
+            "id": 1003,
+            "name": "Fangfang",
+            "age": 30,
+            "username": "Fangfang_1003",
+            "gender": "MALE"
+        }
+    ]
+}

@@ -1,19 +1,9 @@
 const { PubSub, withFilter } = require('graphql-subscriptions');
 const pubsub = new PubSub();
-
-const users = [{
-    id: 1000,
-    name: `Luke Skywalker`,
-    age: 34,
-    username: 'LSK',
-    gender: 'MALE',
-}, {
-    id: 1001,
-    name: 'Lucy Li',
-    age: 23,
-    username: 'LuL',
-    gender: 'FEMALE',
-}];
+const fs = require('fs');
+const data = require('./data.json');
+const path = require('path');
+const { users } = data;
 
 const resolvers = {
     SearchResult: {
@@ -71,7 +61,9 @@ const resolvers = {
             };
         },
         users: (_, args, context, info) => {
-            return users;
+            const { offset = 0, limit = users.length } = args;
+            console.log(args);
+            return { totalCount: users.length, userList: users.slice(offset, offset + limit) };
         },
         user: (parent, args, context, info) => {
             const { id } = args;
@@ -112,13 +104,21 @@ const resolvers = {
                 id: nextId,
                 name: input.name,
                 age: input.age,
+                username: input.username || input.name + '_' + nextId,
+                gender: input.gender || 'MALE',
             });
-            pubsub.publish('USER_ADDED', { userAdded: { id: nextId, name: input.name, age: input.age } });
-            return {
-                id: nextId,
-                name: input.name,
-                age: input.age,
-            };
+            //write back to data.json file
+            data.users = users;
+            const json = JSON.stringify(data, null, 4);
+
+            fs.writeFile(path.resolve(__dirname, 'data.json'), json, 'utf8', () => {
+                pubsub.publish('USER_ADDED', { userAdded: { id: nextId, name: input.name, age: input.age } });
+                return {
+                    id: nextId,
+                    name: input.name,
+                    age: input.age,
+                };
+            });
         }
     },
     Subscription: {

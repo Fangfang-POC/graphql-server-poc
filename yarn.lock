@@ -78,6 +78,13 @@
   dependencies:
     tslib "~2.3.0"
 
+"@graphql-tools/utils@^8.6.9":
+  version "8.6.9"
+  resolved "https://seismic.jfrog.io/seismic/api/npm/npm/@graphql-tools/utils/-/utils-8.6.9.tgz#fe1b81df29c9418b41b7a1ffe731710b93d3a1fe"
+  integrity sha512-Z1X4d4GCT81+8CSt6SgU4t1w1UAUsAIRb67mI90k/zAs+ArkB95iE3bWXuJCUmd1+r8DGGtmUNOArtd6wkt+OQ==
+  dependencies:
+    tslib "~2.3.0"
+
 "@josephg/resolvable@^1.0.0":
   version "1.0.1"
   resolved "https://seismic.jfrog.io/seismic/api/npm/npm/@josephg/resolvable/-/resolvable-1.0.1.tgz#69bc4db754d79e1a2f17a650d3466e038d94a5eb"
