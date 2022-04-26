@@ -99,6 +99,7 @@ interface Node {
 
   type Mutation {
     addUser(input: AddUserInput): User
+    deleteUser(id: ID!): User
   }
 `;
 

@@ -62,7 +62,7 @@ const resolvers = {
         },
         users: (_, args, context, info) => {
             const { offset = 0, limit = users.length } = args;
-            console.log(args);
+            console.log('users query', args);
             return { totalCount: users.length, userList: users.slice(offset, offset + limit) };
         },
         user: (parent, args, context, info) => {
@@ -119,7 +119,22 @@ const resolvers = {
                     age: input.age,
                 };
             });
-        }
+        },
+        deleteUser: (parent, args, context, info) => {
+            const { id } = args;
+            const index = users.findIndex(user => user.id === parseInt(id));
+            if (index !== -1) {
+                const deletedUser = users.splice(index, 1);
+                //write back to data.json file
+                data.users = users;
+                const json = JSON.stringify(data, null, 4);
+                fs.writeFile(path.resolve(__dirname, 'data.json'), json, 'utf8', () => {
+                    // pubsub.publish('USER_DELETED', { userDeleted: { id } });
+                    return deletedUser;
+                });
+            }
+            return null;
+        },
     },
     Subscription: {
         userAdded: {
