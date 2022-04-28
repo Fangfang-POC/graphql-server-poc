@@ -67,6 +67,7 @@ const resolvers = {
         },
         user: (parent, args, context, info) => {
             const { id } = args;
+            console.log(id);
             return users.find(user => (user.id) === parseInt(id));
         },
         search: (parent, args, context, info) => {
