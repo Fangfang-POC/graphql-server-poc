@@ -50,7 +50,7 @@ var corsOptions = {
     origin: [
         "https://127.0.0.1:6060",
         "https://localhost:6060",
-        "http://localhost:6068",
+        "https://localhost:6068",
         "https://studio.apollographql.com"
     ],
     credentials: true,
