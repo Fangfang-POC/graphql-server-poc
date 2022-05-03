@@ -1,27 +1,32 @@
-const express = require('express');
-const { createServer } = require('http');
-const { ApolloServerPluginDrainHttpServer } = require("apollo-server-core");
-const { makeExecutableSchema } = require('@graphql-tools/schema');
-const { WebSocketServer } = require('ws');
-const { useServer } = require('graphql-ws/lib/use/ws');
-const cookieParser = require('cookie-parser');
-const { uppercaseDirectiveTransformer } = require('./directiveTransformers');
+var https = require('https');
+var express = require('express');
+var fs = require('fs');
+var path = require('path');
+var { ApolloServerPluginDrainHttpServer } = require("apollo-server-core");
+var { makeExecutableSchema } = require('@graphql-tools/schema');
+var { WebSocketServer } = require('ws');
+var { useServer } = require('graphql-ws/lib/use/ws');
+var cookieParser = require('cookie-parser');
+var { uppercaseDirectiveTransformer } = require('./directiveTransformers');
 
-const { ApolloServer, gql } = require('apollo-server-express');
-const resolvers = require('./resolvers');
-const typeDefs = gql(require('./typeDefs'));
+var { ApolloServer, gql } = require('apollo-server-express');
+var resolvers = require('./resolvers');
+var typeDefs = gql(require('./typeDefs'));
 
-const app = express();
-const httpServer = createServer(app);
+var app = express();
+var httpServer = https.createServer({
+    key: fs.readFileSync(path.resolve('sslcert/key.pem')),
+    cert: fs.readFileSync(path.resolve('sslcert/cert.pem')),
+}, app);
 
-const schema = makeExecutableSchema({ typeDefs, resolvers });
+var schema = makeExecutableSchema({ typeDefs, resolvers });
 
-const wsServer = new WebSocketServer({ server: httpServer, path: '/subscriptions' });
+var wsServer = new WebSocketServer({ server: httpServer, path: '/subscriptions' });
 // Hand in the schema we just created and have the
 // WebSocketServer start listening
-const serverCleanup = useServer({ schema }, wsServer);
+var serverCleanup = useServer({ schema }, wsServer);
 
-const server = new ApolloServer({
+var server = new ApolloServer({
     schema: uppercaseDirectiveTransformer(schema, 'uppercase'),
     introspection: true,
     graphqlPath: '/graphql',
@@ -41,9 +46,10 @@ const server = new ApolloServer({
     ]
 });
 
-const corsOptions = {
+var corsOptions = {
     origin: [
-        "http://localhost:6060",
+        "https://127.0.0.1:6060",
+        "https://localhost:6060",
         "http://localhost:6068",
         "https://studio.apollographql.com"
     ],
@@ -56,8 +62,9 @@ app.use((req, res, next) => {
         // no: set a new cookie
         let randomNumber = Math.random().toString();
         randomNumber = randomNumber.substring(2, randomNumber.length);
-        const maxAge = 1000 * 60 * 10; //10 minutes
-        res.cookie('myCookieName', randomNumber, { maxAge: maxAge, httpOnly: true });
+        var maxAge = 1000 * 60 * 10; //10 minutes
+        //for cookie intended for 3rd-party, set 'sameSite: "none"'
+        res.cookie('myCookieName', randomNumber, { maxAge: maxAge, httpOnly: false, sameSite: 'none', secure: true});
         console.log('cookie created successfully');
     }
     else {
@@ -75,11 +82,11 @@ server.start().then(() => {
     });
 });
 
-const PORT = 4000;
+var PORT = 4000;
 // Now that our HTTP server is fully set up, we can listen to it.
 httpServer.listen(PORT, () => {
     console.log(
-        `Server is now running on http://localhost:${PORT}${server.graphqlPath}`,
+        `Server is now running on https://localhost:${PORT}${server.graphqlPath}`,
     );
 });
 
