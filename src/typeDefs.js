@@ -86,6 +86,11 @@ interface Node {
   type Subscription {
     userAdded: User
   }
+  type ErrorResult {
+    message: String
+    status: Int
+    success: Boolean
+  }
 
   type Query {
     rebels(id: ID!): Faction
