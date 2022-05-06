@@ -24,9 +24,10 @@ var httpServer = https.createServer({
 
 var corsOptions = {
     origin: [
-        "https://127.0.0.1:6060",
         "https://localhost:6060",
         "https://localhost:6068",
+        "https://192.168.0.102:6060",
+        "https://127.0.0.1:6060",
         "https://studio.apollographql.com"
     ],
     credentials: true,
